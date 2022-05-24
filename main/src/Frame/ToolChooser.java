@@ -6,12 +6,6 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.*;
 import ToolFunction.*;
-import ToolFunction.Graph.ClassMode;
-import ToolFunction.Graph.UsecaseMode;
-import ToolFunction.Line.AssociationMode;
-import ToolFunction.Line.CompositionMode;
-import ToolFunction.Line.GeneralMode;
-import ToolFunction.Select.SelectMode;
 
 public class ToolChooser extends JPanel{
 	

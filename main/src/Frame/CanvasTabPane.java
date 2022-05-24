@@ -9,7 +9,7 @@ import javax.swing.event.ChangeListener;
 
 import ToolFunction.Mode;
 import UML.Canvas;
-import UML.Graph.GraphObject;
+import UML.CanvasObject.GraphObject;
 
 public class CanvasTabPane extends JPanel implements ChangeListener{
 	

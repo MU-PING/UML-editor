@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import Frame.CanvasTabPane;
 import UML.Canvas;
-import UML.Graph.GraphObject;
+import UML.CanvasObject.GraphObject;
 
 public class UnGroupMode extends Mode{
 

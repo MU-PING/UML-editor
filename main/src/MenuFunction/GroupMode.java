@@ -9,8 +9,8 @@ import java.util.Comparator;
 
 import Frame.CanvasTabPane;
 import UML.Canvas;
-import UML.Graph.GraphObject;
-import UML.Graph.Composite.CompositeObject;
+import UML.CanvasObject.CompositeObject;
+import UML.CanvasObject.GraphObject;
 
 public class GroupMode extends Mode{
 

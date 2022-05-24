@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import ToolFunction.Mode;
 import UML.Canvas;
-import UML.Graph.GraphObject;
+import UML.CanvasObject.GraphObject;
 
 import java.util.ArrayList;
 

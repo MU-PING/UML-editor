@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 import Frame.CanvasTabPane;
 import UML.Canvas;
-import UML.Graph.Basic.BasicObject;
+import UML.CanvasObject.BasicObject;
 
 import javax.imageio.ImageIO;
 
@@ -32,8 +32,8 @@ public class Mode implements ActionListener{
 		
 		// set Image
 		try {
-			this.selectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("../Icon/" + this.displayName + "0.png")));
-			this.unselectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("../Icon/" + this.displayName + "1.png")));
+			this.selectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + this.displayName + "0.png")));
+			this.unselectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + this.displayName + "1.png")));
 		}
 		catch (Exception ee) {
 			System.out.println(ee);
