@@ -1,18 +1,19 @@
-package UML;
+package UML.Listener;
 
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import UML.Canvas;
 import UML.CanvasObject.GraphObject;
 
 
-public class MouseObject extends MouseAdapter{
+public class ObjectMove extends MouseAdapter{
 
 	protected Canvas canvas ;
 	protected GraphObject graphObject;
 	
-	public MouseObject(Canvas canvas, GraphObject graphObject) {
+	public ObjectMove(Canvas canvas, GraphObject graphObject) {
 		this.canvas = canvas;
 		this.graphObject = graphObject;
 	}

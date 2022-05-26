@@ -1,10 +1,14 @@
 package UML.CanvasObject;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Point;
 
-import javax.swing.*;
-import javax.swing.border.*;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
+
 import UML.Canvas;
 
 public class ClassBasic extends BasicObject{
@@ -13,10 +17,13 @@ public class ClassBasic extends BasicObject{
 	private JPanel method_field;
 	
 	public ClassBasic(Canvas canvas, Point startPoint) {
-		super(canvas, startPoint, new Dimension(230, 200));
+		super(canvas, startPoint, new Dimension(160, 140));
 
 		// ClassObject init
 		this.setBorder(new TitledBorder("Class"));
+		
+		// --Title--
+		this.add(this.classTitle, BorderLayout.NORTH);
 		
 		// --Attribute Field--
 		attribute_field = new JPanel();
@@ -37,7 +44,6 @@ public class ClassBasic extends BasicObject{
 		method_label.setFont(this.displayFont);
 		method_field.add(method_label, BorderLayout.NORTH);
 		this.add(method_field, BorderLayout.SOUTH);
-		
 	}
 	
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import Frame.CanvasTabPane;
+import Frame.CanvasTabPane_Singleton;
 import UML.Canvas;
 import UML.CanvasObject.BasicObject;
 
@@ -20,14 +21,13 @@ import javax.imageio.ImageIO;
 public class Mode implements ActionListener{
 	
 	private String displayName;
-	protected CanvasTabPane canvasTabPane;
+	protected CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
 	private JToggleButton toggleButton;
 	private ImageIcon selectedImg, unselectedImg;
 
-	protected Mode(String name, CanvasTabPane canvasTabPane){
+	protected Mode(String name){
 		
 		this.displayName = name;
-		this.canvasTabPane = canvasTabPane;
 		this.toggleButton = new JToggleButton();
 		
 		// set Image

@@ -9,8 +9,8 @@ import UML.CanvasObject.ClassBasic;
 
 public class ClassMode extends Mode{
 	
-	public ClassMode(String displayName, CanvasTabPane canvasTabPane) {
-		super(displayName, canvasTabPane);
+	public ClassMode(String displayName) {
+		super(displayName);
 	}
 	
 	@Override

@@ -11,9 +11,8 @@ import javax.swing.JPanel;
 
 import UML.Canvas;
 
+public abstract class GraphObject extends JPanel implements MouseListener {
 
-public abstract class GraphObject extends JPanel implements MouseListener{
-	
 	protected Canvas canvas;
 	protected Rectangle pointSize;
 	protected Point startPoint;
@@ -21,9 +20,9 @@ public abstract class GraphObject extends JPanel implements MouseListener{
 	protected Point endPoint;
 	protected Color selectColor;
 	protected Color unselectColor;
-	protected MouseAdapter mouseAdapter;
+	protected MouseAdapter move;
 	private Point clickPoint;
-	
+
 	public GraphObject(Canvas canvas, Rectangle pointSize, Color unselectColor) {
 		this.canvas = canvas;
 		this.pointSize = pointSize;
@@ -31,31 +30,31 @@ public abstract class GraphObject extends JPanel implements MouseListener{
 		this.size = this.pointSize.getSize();
 		this.endPoint = new Point(this.startPoint);
 		this.endPoint.translate(this.size.width, this.size.height);
-		this.selectColor = new Color(255,246,143);
+		this.selectColor = new Color(255, 246, 143);
 		this.unselectColor = unselectColor;
-		
+
 		this.addMouseListener(this);
 		this.setBounds(pointSize);
 	}
-	
-	public void addSelectMouseAdapter() {
-		this.addMouseListener(this.mouseAdapter);
-		this.addMouseMotionListener(this.mouseAdapter);
+
+	public void addMouseAdapter() {
+		this.addMouseListener(this.move);
+		this.addMouseMotionListener(this.move);
 	}
-	
-	public void deleteSelectMouseAdapter() {
-		this.removeMouseListener(this.mouseAdapter);
-		this.removeMouseMotionListener(this.mouseAdapter);
+
+	public void deleteMouseAdapter() {
+		this.removeMouseListener(this.move);
+		this.removeMouseMotionListener(this.move);
 	}
-	
+
 	public void setClickPoint(Point clickPoint) {
 		this.clickPoint = clickPoint;
 	}
-	
+
 	public Point getClickPoint() {
 		return this.clickPoint;
 	}
-	
+
 	public void setStartPoint(Point p) {
 		this.startPoint.setLocation(p);
 		this.pointSize.setLocation(p);
@@ -63,11 +62,11 @@ public abstract class GraphObject extends JPanel implements MouseListener{
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.setBounds(this.pointSize);
 	}
-	
+
 	public Point getStartPoint() {
 		return this.startPoint;
 	}
-	
+
 	public void startPointTranslate(int movex, int movey) {
 		this.startPoint.translate(movex, movey);
 		this.pointSize.setLocation(this.startPoint);
@@ -75,39 +74,50 @@ public abstract class GraphObject extends JPanel implements MouseListener{
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.setBounds(this.pointSize);
 	}
-	
+
 	public Dimension getDimension() {
 		return this.size;
 	}
-	
+
 	public Point getEndPoint() {
 		return this.endPoint;
 	}
-	
+
 	public Rectangle getPointSize() {
 		return this.pointSize;
 	}
-	
+
 	public void beSelected() {
 		this.setBackground(this.selectColor);
 	}
-	
+
 	public void beUnSelected() {
 		this.setBackground(this.unselectColor);
 	}
 
+	// ****** Composite Design Pattern ******
 	public abstract void clickUnGroup();
+
 	public abstract void clickChangeName();
-	
+
 	@Override
-	public void mouseClicked(MouseEvent e) {}
+	public void mouseClicked(MouseEvent e) {
+	}
+
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
+
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
+
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+	}
+
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {
+	}
 
 }

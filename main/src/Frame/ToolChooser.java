@@ -10,7 +10,7 @@ import ToolFunction.*;
 public class ToolChooser extends JPanel{
 	
 	// Help Mode control Canvas
-	private CanvasTabPane canvasTabPane;
+	private CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
 	
 	// Button nanager
 	private ButtonGroup listGroup = new ButtonGroup();
@@ -18,15 +18,14 @@ public class ToolChooser extends JPanel{
 	// Polymorphism to manage Mode
 	private ArrayList<Mode> modes = new ArrayList<Mode>();
 
-	public ToolChooser(CanvasTabPane canvasTabPane) {
-		this.canvasTabPane = canvasTabPane;
-		SelectMode selectMode = new SelectMode("select", this.canvasTabPane);
+	public ToolChooser() {
+		SelectMode selectMode = new SelectMode("select");
 		modes.add(selectMode);
-		modes.add(new AssociationMode("association", this.canvasTabPane));
-		modes.add(new GeneralMode("general", this.canvasTabPane));
-		modes.add(new CompositionMode("composition", this.canvasTabPane));
-		modes.add(new ClassMode("class", this.canvasTabPane));
-		modes.add(new UsecaseMode("usecase", this.canvasTabPane));
+		modes.add(new AssociationMode("association"));
+		modes.add(new GeneralMode("general"));
+		modes.add(new CompositionMode("composition"));
+		modes.add(new ClassMode("class"));
+		modes.add(new UsecaseMode("usecase"));
 		
 		this.setLayout(new GridLayout(modes.size(), 1));
 		

@@ -7,14 +7,15 @@ import UML.CanvasObject.UsecaseBasic;
 
 public class UsecaseMode extends Mode{
 	
-	public UsecaseMode(String displayName, CanvasTabPane canvasTabPane){
-		super(displayName, canvasTabPane);
+	public UsecaseMode(String displayName){
+		super(displayName);
 	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		canvas.addGraphObject(new UsecaseBasic(canvas, e.getPoint()));
+	
 	}
 
 }

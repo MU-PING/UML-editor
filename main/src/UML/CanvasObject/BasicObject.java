@@ -1,24 +1,34 @@
 package UML.CanvasObject;
 
-import java.awt.*;
-import java.awt.event.MouseEvent;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
-import javax.swing.*;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 import UML.Canvas;
-import UML.MouseObject;
+import UML.Listener.ObjectMove;
 
 public class BasicObject extends GraphObject{
 
-	protected Font displayFont = new Font("Comic Sans MS", Font.BOLD, 18);
 	protected JLabel title = new JLabel("Untitled");
 	protected JPanel classTitle = new JPanel();
+	protected Font displayFont = new Font("Comic Sans MS", Font.BOLD, 14);
 	protected ArrayList<Port> ports = new ArrayList<Port>();
-	protected int portSize = 10;
+	protected MouseAdapter line;
+	protected int portSize = 8;
 	
 	protected BasicObject(Canvas canvas, Point startPoint, Dimension size) {
 		super(canvas, new Rectangle(startPoint, size), new Color(238,243,203));
 
-		this.mouseAdapter = new MouseObject(canvas, this);
+		this.move = new ObjectMove(canvas, this);
 		
 		// superlayout
 		this.setBackground(this.unselectColor);
@@ -30,33 +40,28 @@ public class BasicObject extends GraphObject{
 		this.classTitle.setLayout(new BorderLayout());
 		this.classTitle.setBackground(new Color(255,185,15));
 		this.classTitle.add(this.title, BorderLayout.CENTER);
-		this.add(this.classTitle, BorderLayout.NORTH);
 		
 		// initialize port
 		int x, y;
-		int startx = this.startPoint.x;
-		int starty = this.startPoint.y;
-		int width = this.size.width;
-		int height = this.size.height;
-		
+
 			// top port
-		x = startx + (width - this.portSize)/2;
-		y = starty - this.portSize;
+		x = (this.size.width - this.portSize)/2;
+		y = 0;
 		this.setPort(x, y);
-		
+
 			// left port
-		x = startx - this.portSize;
-		y = starty + (height - this.portSize)/2;
+		x = 0;
+		y = (this.size.height - this.portSize)/2;
 		this.setPort(x, y);
 		
 			// right port
-		x = startx + width;
-		y = starty + (height - this.portSize)/2;
+		x = this.size.width - this.portSize;
+		y = (this.size.height - this.portSize)/2;
 		this.setPort(x, y);
-
+		
 			// bottom port
-		x = startx + (width - this.portSize)/2;
-		y = starty + height;
+		x = (this.size.width - this.portSize)/2;
+		y = this.size.height - this.portSize;
 		this.setPort(x, y);
 	}
 
@@ -67,25 +72,22 @@ public class BasicObject extends GraphObject{
 	public void setPort(int x, int y) {
 		Port port = new Port(new Point(x, y), portSize);
 		this.ports.add(port);
-		this.canvas.add(port);
-		this.canvas.setComponentZOrder(port, 0);
+		
+		// if there is no constraints(NORTH..) in BorderLayout, the default will be in the center
+		// but if the center is replaced by other component, the original component will be layouted by setbounds 
+		this.add(port);
 	}
 	
 	@Override
-	public void setStartPoint(Point p) {
-		super.setStartPoint(p);
-		
-		for(Port port : ports) {
-			
-		}
-		
+	public void addMouseAdapter() {
+		this.addMouseListener(this.move);
+		this.addMouseMotionListener(this.move);
 	}
 	
 	@Override
-	public void startPointTranslate(int movex, int movey) {
-		super.startPointTranslate(movex, movey);
-		
-		
+	public void deleteMouseAdapter() {
+		this.removeMouseListener(this.move);
+		this.removeMouseMotionListener(this.move);
 	}
 	
 	@Override
@@ -93,7 +95,6 @@ public class BasicObject extends GraphObject{
 		super.beSelected();
 		for(Port currentPort : ports){
 			currentPort.setVisible(true);
-			this.canvas.setComponentZOrder(currentPort, 0);
 		}
 	}
 	

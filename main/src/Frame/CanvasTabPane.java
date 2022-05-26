@@ -1,18 +1,21 @@
 package Frame;
 
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import ToolFunction.Mode;
 import UML.Canvas;
-import UML.CanvasObject.GraphObject;
 
 public class CanvasTabPane extends JPanel implements ChangeListener{
-	
+
 	private ArrayList<Canvas> canvasPanels = new ArrayList<>();
 	
 	private Canvas canvasPanel;

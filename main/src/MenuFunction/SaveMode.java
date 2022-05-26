@@ -6,8 +6,8 @@ import Frame.CanvasTabPane;
 
 public class SaveMode extends Mode{
 
-	public SaveMode(String name, CanvasTabPane canvasTabPane) {
-		super(name, canvasTabPane);
+	public SaveMode(String name) {
+		super(name);
 		// TODO Auto-generated constructor stub
 	}
 

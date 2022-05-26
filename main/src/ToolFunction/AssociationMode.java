@@ -16,12 +16,14 @@ public class AssociationMode extends Mode{
 	private Point startPoint = null;
 	private Point endPoint = null;
 	
-	public AssociationMode(String displayName, CanvasTabPane canvasTabPane){
-		super(displayName, canvasTabPane);
+	public AssociationMode(String displayName){
+		super(displayName);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		super.actionPerformed(e);
+		
+		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 	}
 }

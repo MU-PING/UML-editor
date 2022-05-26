@@ -9,10 +9,13 @@ import UML.Canvas;
 public class UsecaseBasic extends BasicObject{
 
 	public UsecaseBasic(Canvas canvas, Point startPoint) {
-		super(canvas, startPoint, new Dimension(180, 80));
+		super(canvas, startPoint, new Dimension(140, 70));
 
 		// UsecaseObject init
 		this.setBorder(new TitledBorder("Usecase"));
+		
+		// --Title--
+		this.add(this.classTitle, BorderLayout.CENTER);
 	}
 }
 

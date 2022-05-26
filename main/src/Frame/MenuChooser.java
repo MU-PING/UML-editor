@@ -11,23 +11,20 @@ import MenuFunction.*;
 public class MenuChooser extends JMenuBar {
 	
 	// Help Mode control Canvas
-	private CanvasTabPane canvasTabPane;
 	private ArrayList<Mode> fileMode = new ArrayList<>();
 	private ArrayList<Mode> editMode = new ArrayList<>();
 	
-	public MenuChooser(CanvasTabPane canvasTabPane) {
+	public MenuChooser() {
 
-		this.canvasTabPane = canvasTabPane;
-		
 		// File
-		fileMode.add(new NewUMLMode("NewUML", this.canvasTabPane));
-		fileMode.add(new SaveMode("Save", this.canvasTabPane));
-		fileMode.add(new SaveAsMode("SaveAs", this.canvasTabPane));
+		fileMode.add(new NewUMLMode("NewUML"));
+		fileMode.add(new SaveMode("Save"));
+		fileMode.add(new SaveAsMode("SaveAs"));
 		
 		// Edut 
-		editMode.add(new GroupMode("Group", this.canvasTabPane));
-		editMode.add(new UnGroupMode("UnGroup", this.canvasTabPane));
-		editMode.add(new ChangeNameMode("ChangeName", this.canvasTabPane));
+		editMode.add(new GroupMode("Group"));
+		editMode.add(new UnGroupMode("UnGroup"));
+		editMode.add(new ChangeNameMode("ChangeName"));
 		
 		// FileMenu-----
 		JMenu fileMenu = new JMenu("File");

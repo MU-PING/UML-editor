@@ -1,13 +1,18 @@
 package UML;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import ToolFunction.Mode;
-import UML.Canvas;
-import UML.CanvasObject.GraphObject;
-
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import ToolFunction.Mode;
+import UML.CanvasObject.GraphObject;
 
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
@@ -26,7 +31,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		this.addMouseMotionListener(this);
 	}
 
-	// Member Method cant Override
+	// ****** Strategy Design Pattern ******
 	public final void setMode(Mode canvasMode) {
 		this.mode = canvasMode;
 	}
@@ -47,14 +52,14 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	// set select mode MouseAdapter
 	public final void setALLMouseAdapter() {
 		for(GraphObject currentObject: graphObjects) {
-			currentObject.addSelectMouseAdapter();
+			currentObject.addMouseAdapter();
 	    }
 	}
 	
 	// clear select mode MouseAdapter
 	public final void clearALLMouseAdapter() {
 		for(GraphObject currentObject: graphObjects) {
-			currentObject.deleteSelectMouseAdapter();
+			currentObject.deleteMouseAdapter();
 	    }
 	}
 	
@@ -118,6 +123,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	public void mousePressed(MouseEvent e) {
 		this.mode.mousePressed(e);
+		
 	}
 
 	@Override

@@ -6,9 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
-import Frame.CanvasTabPane;
+
 import UML.Canvas;
 
 public class SelectMode extends Mode{
@@ -16,15 +15,14 @@ public class SelectMode extends Mode{
 	private Point startPoint = null;
 	private Point endPoint = null;
 	
-	public SelectMode(String displayName, CanvasTabPane canvasTabPane){
-		super(displayName, canvasTabPane);
+	public SelectMode(String displayName){
+		super(displayName);
 	}
 	
 	@Override
 	public void action() {
+		super.action();
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		this.canvasTabPane.setMode(this);
-		canvas.clearALLMouseAdapter();
 		canvas.setALLMouseAdapter();
 	}
 	

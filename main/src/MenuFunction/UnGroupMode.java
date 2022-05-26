@@ -9,10 +9,10 @@ import UML.CanvasObject.GraphObject;
 
 public class UnGroupMode extends Mode{
 
-	public UnGroupMode(String name, CanvasTabPane canvasTabPane) {
-		super(name, canvasTabPane);
-		
+	public UnGroupMode(String name) {
+		super(name);
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		

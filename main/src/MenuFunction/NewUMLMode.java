@@ -3,15 +3,13 @@ package MenuFunction;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 
 import Frame.CanvasTabPane;
-import UML.Canvas;
 
 public class NewUMLMode extends Mode{
 
-	public NewUMLMode(String name, CanvasTabPane canvasTabPane) {
-		super(name, canvasTabPane);
+	public NewUMLMode(String name) {
+		super(name);
 	}
 
 	@Override

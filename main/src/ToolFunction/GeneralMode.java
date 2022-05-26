@@ -15,8 +15,8 @@ public class GeneralMode extends Mode{
 	private Point startPoint = null;
 	private Point endPoint = null;
 	
-	public GeneralMode(String displayName, CanvasTabPane canvasTabPane){
-		super(displayName, canvasTabPane);
+	public GeneralMode(String displayName){
+		super(displayName);
 	}
 	
 	@Override
