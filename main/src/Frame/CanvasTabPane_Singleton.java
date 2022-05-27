@@ -11,3 +11,4 @@ public class CanvasTabPane_Singleton {
         return canvasTabPane;
     }
 }
+// ****** ------------------------- ******

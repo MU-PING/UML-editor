@@ -20,8 +20,6 @@ public class CompositeObject extends GraphObject {
 
 		super(canvas, pointSize, new Color(238, 248, 233));
 
-		this.move = new ObjectMove(canvas, this);
-
 		this.selectedGraphObjects = selectedGraphObjects;
 		this.setLayout(null);
 		this.setBorder(new TitledBorder("Group"));
@@ -47,8 +45,4 @@ public class CompositeObject extends GraphObject {
 		this.canvas.ungroupRemove(this);
 	}
 
-	@Override
-	public void clickChangeName() {
-		JOptionPane.showMessageDialog(this, "Composite object has no name", "Warning", JOptionPane.ERROR_MESSAGE);
-	}
 }

@@ -20,22 +20,20 @@ public class CanvasTabPane extends JPanel implements ChangeListener{
 	
 	private Canvas canvasPanel;
 	private JTabbedPane tabbedPane = new JTabbedPane();
-	private int v;
-	private int h;
+	private int v = ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
+	private int h = ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 	private Mode mode;
 	
 	public CanvasTabPane() {
 		
 		this.setLayout(new BorderLayout());
 		this.setBackground(new Color(238,233,233));
-		this.v = ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
-		this.h = ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED;
 	
 		this.tabbedPane.setFocusable(false);
 		this.tabbedPane.addChangeListener(this);
 		this.add(tabbedPane);
 	}
-	public void InitMode(Mode mode) {
+	public void initMode(Mode mode) {
 		this.mode = mode;
 		this.addTab("Untitled");
 	}

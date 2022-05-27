@@ -31,7 +31,7 @@ public class ToolChooser extends JPanel{
 		
 		// initialize select mode
 		selectMode.getButton().setSelected(true);
-		this.canvasTabPane.InitMode(selectMode);
+		this.canvasTabPane.initMode(selectMode);
 		
 		// init Button
 		for (int i = 0; i < modes.size(); i++) {

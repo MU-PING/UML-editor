@@ -11,32 +11,34 @@ import UML.CanvasObject.GraphObject;
 public class ObjectMove extends MouseAdapter{
 
 	protected Canvas canvas ;
-	protected GraphObject graphObject;
 	
-	public ObjectMove(Canvas canvas, GraphObject graphObject) {
+	public ObjectMove(Canvas canvas) {
 		this.canvas = canvas;
-		this.graphObject = graphObject;
 	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		this.graphObject.setClickPoint(e.getPoint());
+		GraphObject graphObject = (GraphObject) e.getSource();
+		graphObject.setClickPoint(e.getPoint());
 	}
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		GraphObject graphObject = (GraphObject) e.getSource();
 		this.canvas.clearSelectedGraphObjects();
-		this.canvas.addSelectedGraphObject(this.graphObject);
+		this.canvas.addSelectedGraphObject(graphObject);
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		
-		Point clickPoint = this.graphObject.getClickPoint();
+		GraphObject graphObject = (GraphObject) e.getSource();
+		
+		Point clickPoint = graphObject.getClickPoint();
 		
 		int move_x = e.getPoint().x - clickPoint.x;
 		int move_y = e.getPoint().y - clickPoint.y;
 
-		this.graphObject.startPointTranslate(move_x, move_y);
+		graphObject.startPointTranslate(move_x, move_y);
 	}
 }

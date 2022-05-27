@@ -7,9 +7,11 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.JPanel;
 
 import UML.Canvas;
+import UML.Listener.ObjectMove;
 
 public abstract class GraphObject extends JPanel implements MouseListener {
 
@@ -18,9 +20,12 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 	protected Point startPoint;
 	protected Dimension size;
 	protected Point endPoint;
-	protected Color selectColor;
+	protected Color selectColor = new Color(255, 246, 143);
 	protected Color unselectColor;
-	protected MouseAdapter move;
+	
+	protected MouseAdapter moveAdapter;
+	protected boolean move = false;
+	
 	private Point clickPoint;
 
 	public GraphObject(Canvas canvas, Rectangle pointSize, Color unselectColor) {
@@ -30,21 +35,27 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		this.size = this.pointSize.getSize();
 		this.endPoint = new Point(this.startPoint);
 		this.endPoint.translate(this.size.width, this.size.height);
-		this.selectColor = new Color(255, 246, 143);
 		this.unselectColor = unselectColor;
-
+		this.moveAdapter = new ObjectMove(this.canvas);
+		
 		this.addMouseListener(this);
 		this.setBounds(pointSize);
 	}
 
 	public void addMouseAdapter() {
-		this.addMouseListener(this.move);
-		this.addMouseMotionListener(this.move);
+		if(!move) {
+			this.move = true;
+			this.addMouseListener(this.moveAdapter);
+			this.addMouseMotionListener(this.moveAdapter);
+		}
 	}
 
 	public void deleteMouseAdapter() {
-		this.removeMouseListener(this.move);
-		this.removeMouseMotionListener(this.move);
+		if(move) {
+			this.move = false;
+			this.removeMouseListener(this.moveAdapter);
+			this.removeMouseMotionListener(this.moveAdapter);
+		}
 	}
 
 	public void setClickPoint(Point clickPoint) {
@@ -96,9 +107,12 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 	}
 
 	// ****** Composite Design Pattern ******
-	public abstract void clickUnGroup();
+	public void clickUnGroup() {
+	}
 
-	public abstract void clickChangeName();
+	public void clickChangeName() {
+	}
+	// ****** ------------------------- ******
 
 	@Override
 	public void mouseClicked(MouseEvent e) {

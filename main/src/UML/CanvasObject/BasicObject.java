@@ -22,14 +22,11 @@ public class BasicObject extends GraphObject{
 	protected JPanel classTitle = new JPanel();
 	protected Font displayFont = new Font("Comic Sans MS", Font.BOLD, 14);
 	protected ArrayList<Port> ports = new ArrayList<Port>();
-	protected MouseAdapter line;
 	protected int portSize = 8;
 	
 	protected BasicObject(Canvas canvas, Point startPoint, Dimension size) {
 		super(canvas, new Rectangle(startPoint, size), new Color(238,243,203));
 
-		this.move = new ObjectMove(canvas, this);
-		
 		// superlayout
 		this.setBackground(this.unselectColor);
 		this.setLayout(new BorderLayout());
@@ -77,19 +74,7 @@ public class BasicObject extends GraphObject{
 		// but if the center is replaced by other component, the original component will be layouted by setbounds 
 		this.add(port);
 	}
-	
-	@Override
-	public void addMouseAdapter() {
-		this.addMouseListener(this.move);
-		this.addMouseMotionListener(this.move);
-	}
-	
-	@Override
-	public void deleteMouseAdapter() {
-		this.removeMouseListener(this.move);
-		this.removeMouseMotionListener(this.move);
-	}
-	
+
 	@Override
 	public void beSelected() {
 		super.beSelected();
@@ -105,12 +90,7 @@ public class BasicObject extends GraphObject{
 			currentPort.setVisible(false);
 		}
 	}
-	
-	@Override
-	public void clickUnGroup() {
-		JOptionPane.showMessageDialog(this, "Composite object has no name", "Warning", JOptionPane.ERROR_MESSAGE);
-	}
-	
+
 	@Override
 	public void clickChangeName() {
 		String input = JOptionPane.showInputDialog(this, "Name", "Change Object Name", JOptionPane.INFORMATION_MESSAGE);

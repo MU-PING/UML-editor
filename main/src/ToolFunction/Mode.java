@@ -1,34 +1,28 @@
 package ToolFunction;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.io.IOException;
-import java.util.ArrayList;
 
-import javax.swing.*;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JToggleButton;
+
 import Frame.CanvasTabPane;
 import Frame.CanvasTabPane_Singleton;
 import UML.Canvas;
-import UML.CanvasObject.BasicObject;
-
-import javax.imageio.ImageIO;
 
 public class Mode implements ActionListener{
 	
 	private String displayName;
 	protected CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
-	private JToggleButton toggleButton;
+	private JToggleButton toggleButton = new JToggleButton();
 	private ImageIcon selectedImg, unselectedImg;
 
 	protected Mode(String name){
 		
 		this.displayName = name;
-		this.toggleButton = new JToggleButton();
 		
 		// set Image
 		try {

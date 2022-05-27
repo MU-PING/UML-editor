@@ -21,8 +21,8 @@ public class SelectMode extends Mode{
 	
 	@Override
 	public void action() {
-		super.action();
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
+		this.canvasTabPane.setMode(this);
 		canvas.setALLMouseAdapter();
 	}
 	
