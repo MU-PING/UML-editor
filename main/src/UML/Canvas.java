@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 import ToolFunction.Mode;
 import UML.CanvasObject.GraphObject;
-import UML.Listener.ObjectMove;
+import UML.Listener.SelectModeAdapter;
 
 
 public class Canvas extends JPanel implements MouseListener, MouseMotionListener {
@@ -23,7 +23,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	private ArrayList<GraphObject> selectedGraphObjects = new ArrayList<>();
 	
 	private Mode mode;
-	private MouseAdapter move;
 	
 	public Canvas(String Name) {
 		this.setName(Name);
@@ -32,8 +31,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		this.setPreferredSize(new Dimension(3840, 2160));
 		this.addMouseListener(this);
 		this.addMouseMotionListener(this);
-		
-		this.move = new ObjectMove(this);
 	}
 
 	// ****** Strategy Design Pattern ******
@@ -129,7 +126,6 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	@Override
 	public void mousePressed(MouseEvent e) {
 		this.mode.mousePressed(e);
-		
 	}
 
 	@Override

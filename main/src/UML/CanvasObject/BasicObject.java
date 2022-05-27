@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import UML.Canvas;
-import UML.Listener.ObjectMove;
+import UML.Listener.SelectModeAdapter;
 
 public class BasicObject extends GraphObject{
 

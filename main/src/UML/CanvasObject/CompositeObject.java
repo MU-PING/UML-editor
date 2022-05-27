@@ -10,7 +10,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import UML.Canvas;
-import UML.Listener.ObjectMove;
+import UML.Listener.SelectModeAdapter;
 
 public class CompositeObject extends GraphObject {
 

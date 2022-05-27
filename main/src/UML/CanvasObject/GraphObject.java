@@ -11,7 +11,7 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import UML.Canvas;
-import UML.Listener.ObjectMove;
+import UML.Listener.SelectModeAdapter;
 
 public abstract class GraphObject extends JPanel implements MouseListener {
 
@@ -23,8 +23,8 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 	protected Color selectColor = new Color(255, 246, 143);
 	protected Color unselectColor;
 	
-	protected MouseAdapter moveAdapter;
-	protected boolean move = false;
+	protected MouseAdapter selectModeAdapter;
+	protected boolean selectModeAdapter_flag = false;
 	
 	private Point clickPoint;
 
@@ -36,25 +36,25 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		this.endPoint = new Point(this.startPoint);
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.unselectColor = unselectColor;
-		this.moveAdapter = new ObjectMove(this.canvas);
+		this.selectModeAdapter = new SelectModeAdapter(this.canvas);
 		
 		this.addMouseListener(this);
 		this.setBounds(pointSize);
 	}
 
 	public void addMouseAdapter() {
-		if(!move) {
-			this.move = true;
-			this.addMouseListener(this.moveAdapter);
-			this.addMouseMotionListener(this.moveAdapter);
+		if(!selectModeAdapter_flag) {
+			this.selectModeAdapter_flag = true;
+			this.addMouseListener(this.selectModeAdapter);
+			this.addMouseMotionListener(this.selectModeAdapter);
 		}
 	}
 
 	public void deleteMouseAdapter() {
-		if(move) {
-			this.move = false;
-			this.removeMouseListener(this.moveAdapter);
-			this.removeMouseMotionListener(this.moveAdapter);
+		if(selectModeAdapter_flag) {
+			this.selectModeAdapter_flag = false;
+			this.removeMouseListener(this.selectModeAdapter);
+			this.removeMouseMotionListener(this.selectModeAdapter);
 		}
 	}
 

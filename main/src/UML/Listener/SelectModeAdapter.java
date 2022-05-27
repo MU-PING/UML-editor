@@ -8,11 +8,11 @@ import UML.Canvas;
 import UML.CanvasObject.GraphObject;
 
 
-public class ObjectMove extends MouseAdapter{
+public class SelectModeAdapter extends MouseAdapter{
 
 	protected Canvas canvas ;
 	
-	public ObjectMove(Canvas canvas) {
+	public SelectModeAdapter(Canvas canvas) {
 		this.canvas = canvas;
 	}
 	
