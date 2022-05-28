@@ -29,9 +29,8 @@ public class AssociationMode extends Mode {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
-
+	public void action() {
+		super.action();
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		canvas.deleteDefaultAdapters();
 	}

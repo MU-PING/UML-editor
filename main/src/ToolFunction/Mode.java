@@ -52,8 +52,8 @@ public class Mode implements ActionListener{
 	}
 	
 	public void action() {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		this.canvasTabPane.setMode(this);
+		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		canvas.addDefaultAdapters();
 		canvas.deleteSelectModeAdapters();
 		canvas.clearSelectedGraphObjects();
