@@ -21,9 +21,9 @@ public class SelectMode extends Mode{
 	
 	@Override
 	public void action() {
+		super.action();
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		this.canvasTabPane.setMode(this);
-		canvas.setALLMouseAdapter();
+		canvas.addSelectModeAdapters();
 	}
 	
 	@Override
@@ -31,6 +31,13 @@ public class SelectMode extends Mode{
 		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		canvas.clearSelectedGraphObjects();
 		this.startPoint = e.getPoint();
+	}
+	
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
+		this.endPoint = e.getPoint();
+		canvas.repaint();
 	}
 	
 	@Override
@@ -54,16 +61,9 @@ public class SelectMode extends Mode{
 		this.endPoint = null;
 		canvas.repaint();
 	}
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		this.endPoint = e.getPoint();
-		canvas.repaint();
-	}
 	
 	@Override
 	public void paint(Graphics g) {
-		
 		if(this.startPoint!=null && this.endPoint != null) {
 			int mnx, mny;
 			int mxx, mxy;

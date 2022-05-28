@@ -45,24 +45,37 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		this.graphObjects.add(graphObject);
 		System.out.printf("Add GraphObjects: %s \n", this.graphObjects.size());
 		
+		// repaint() -> update() -> paint()
+		// paint()-> paintComponent()-> paintBorder()->paintChildren()
 		this.repaint();
 		this.validate();
 	}
 	
-	// repaint() -> update() -> paint()
-	// paint()-> paintComponent()-> paintBorder()->paintChildren()
-	
 	// set select mode MouseAdapter
-	public final void setALLMouseAdapter() {
+	public final void addSelectModeAdapters() {
 		for(GraphObject currentObject: graphObjects) {
-			currentObject.addMouseAdapter();
+			currentObject.addSelectModeAdapter();
 	    }
 	}
 	
-	// clear select mode MouseAdapter
-	public final void clearALLMouseAdapter() {
+	// delete select mode MouseAdapter
+	public final void deleteSelectModeAdapters() {
 		for(GraphObject currentObject: graphObjects) {
-			currentObject.deleteMouseAdapter();
+			currentObject.deleteSelectModeAdapter();
+	    }
+	}
+	
+	// set default MouseAdapter
+	public final void addDefaultAdapters() {
+		for(GraphObject currentObject: graphObjects) {
+			currentObject.addDefaultAdapter();
+	    }
+	}
+	
+	// delete default mode MouseAdapter
+	public final void deleteDefaultAdapters() {
+		for(GraphObject currentObject: graphObjects) {
+			currentObject.deleteDefaultAdapter();
 	    }
 	}
 	
@@ -114,7 +127,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	} 
 	
 	public final ArrayList<GraphObject> getSelectedGraphObjects() {
-		return new ArrayList<>(this.selectedGraphObjects);
+		return new ArrayList<GraphObject>(this.selectedGraphObjects);
 	}
 	
 	// MouseListener

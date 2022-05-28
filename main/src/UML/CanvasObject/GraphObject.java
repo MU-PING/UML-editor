@@ -22,9 +22,10 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 	protected Point endPoint;
 	protected Color selectColor = new Color(255, 246, 143);
 	protected Color unselectColor;
-	
+
 	protected MouseAdapter selectModeAdapter;
 	protected boolean selectModeAdapter_flag = false;
+	protected boolean defaultAdapter_flag = false;
 	
 	private Point clickPoint;
 
@@ -37,21 +38,23 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.unselectColor = unselectColor;
 		this.selectModeAdapter = new SelectModeAdapter(this.canvas);
-		
+
 		this.addMouseListener(this);
+		this.defaultAdapter_flag = true;
+		
 		this.setBounds(pointSize);
 	}
 
-	public void addMouseAdapter() {
-		if(!selectModeAdapter_flag) {
+	public void addSelectModeAdapter() {
+		if (!this.selectModeAdapter_flag) {
 			this.selectModeAdapter_flag = true;
 			this.addMouseListener(this.selectModeAdapter);
 			this.addMouseMotionListener(this.selectModeAdapter);
 		}
 	}
 
-	public void deleteMouseAdapter() {
-		if(selectModeAdapter_flag) {
+	public void deleteSelectModeAdapter() {
+		if (this.selectModeAdapter_flag) {
 			this.selectModeAdapter_flag = false;
 			this.removeMouseListener(this.selectModeAdapter);
 			this.removeMouseMotionListener(this.selectModeAdapter);
@@ -112,6 +115,13 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 
 	public void clickChangeName() {
 	}
+
+	public void addDefaultAdapter() {
+	}
+
+	public void deleteDefaultAdapter() {
+	}
+	
 	// ****** ------------------------- ******
 
 	@Override

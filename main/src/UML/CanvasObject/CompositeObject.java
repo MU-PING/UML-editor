@@ -10,7 +10,6 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import UML.Canvas;
-import UML.Listener.SelectModeAdapter;
 
 public class CompositeObject extends GraphObject {
 
@@ -24,11 +23,11 @@ public class CompositeObject extends GraphObject {
 		this.setLayout(null);
 		this.setBorder(new TitledBorder("Group"));
 		this.setBackground(this.unselectColor);
-		this.addMouseAdapter();
+		this.addSelectModeAdapter();
 
 		for (GraphObject currentObject : this.selectedGraphObjects) {
 			currentObject.startPointTranslate(-this.startPoint.x, -this.startPoint.y);
-			currentObject.deleteMouseAdapter();
+			currentObject.deleteSelectModeAdapter();
 			this.add(currentObject);
 		}
 	}
@@ -39,7 +38,7 @@ public class CompositeObject extends GraphObject {
 		for (GraphObject currentObject : this.selectedGraphObjects) {
 			Point toPoint = SwingUtilities.convertPoint(this, currentObject.getStartPoint(), this.canvas);
 			currentObject.setStartPoint(toPoint);
-			currentObject.addMouseAdapter();
+			currentObject.addSelectModeAdapter();
 			this.canvas.addGraphObject(currentObject);
 		}
 		this.canvas.ungroupRemove(this);
