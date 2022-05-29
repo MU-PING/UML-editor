@@ -13,8 +13,7 @@ public class UsecaseMode extends Mode{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.addGraphObject(new UsecaseBasic(canvas, e.getPoint()));
+		this.canvas.addGraphObject(new UsecaseBasic(canvas, e.getPoint()));
 	
 	}
 

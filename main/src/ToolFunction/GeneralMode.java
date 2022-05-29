@@ -12,8 +12,6 @@ import UML.Canvas;
 
 public class GeneralMode extends Mode{
 	
-	private Point startPoint = null;
-	private Point endPoint = null;
 	
 	public GeneralMode(String displayName){
 		super(displayName);

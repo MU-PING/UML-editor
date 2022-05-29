@@ -15,8 +15,7 @@ public class ClassMode extends Mode{
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.addGraphObject(new ClassBasic(canvas, e.getPoint()));
+		this.canvas.addGraphObject(new ClassBasic(this.canvas, e.getPoint()));
 	}
 }
 

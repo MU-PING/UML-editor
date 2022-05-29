@@ -14,6 +14,7 @@ import javax.swing.SwingUtilities;
 
 import UML.Canvas;
 import UML.CanvasObject.BasicObject;
+import UML.CanvasObject.Connection;
 import UML.CanvasObject.Port;
 
 public class AssociationMode extends Mode {
@@ -23,6 +24,9 @@ public class AssociationMode extends Mode {
 
 	private Point startPoint = null;
 	private Point endPoint = null;
+	
+	private Port startPort = null;
+	private Port endPort = null;
 
 	public AssociationMode(String displayName) {
 		super(displayName);
@@ -31,16 +35,14 @@ public class AssociationMode extends Mode {
 	@Override
 	public void action() {
 		super.action();
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.deleteDefaultAdapters();
+		this.canvas.deleteDefaultAdapters();
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		JPanel getJpanel = (JPanel) canvas.getComponentAt(e.getPoint());
+		JPanel getJpanel = (JPanel) this.canvas.getComponentAt(e.getPoint());
 
-		if (getJpanel != canvas) {
+		if (getJpanel != this.canvas) {
 			this.startJPanel = (BasicObject) getJpanel;
 			this.startPoint = e.getPoint();
 		}
@@ -48,29 +50,30 @@ public class AssociationMode extends Mode {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		JPanel getJpanel = (JPanel) canvas.getComponentAt(e.getPoint());
+		JPanel getJpanel = (JPanel) this.canvas.getComponentAt(e.getPoint());
 
-		if (getJpanel != canvas) {
+		if (getJpanel != this.canvas) {
 			this.endJPanel = (BasicObject) getJpanel;
 			this.endPoint = e.getPoint();
 		}
 
 		if (this.startJPanel != null & this.endJPanel != null) {
-			this.startPoint = this.startJPanel.getNearestPort(this.startPoint);
-			this.endPoint = this.endJPanel.getNearestPort(this.endPoint);
-			canvas.repaint();
+			this.startPort = this.startJPanel.getNearestPort(this.startPoint);
+			this.endPort = this.endJPanel.getNearestPort(this.endPoint);
+			
+			Connection connection = new Connection(this.startPort, this.endPort);
+			this.startPort.setConnection(connection);
+			this.endPort.setConnection(connection);
+			this.canvas.addConnection(connection);
+			
+			this.startJPanel = null;
+			this.endJPanel = null;
+			this.startPoint = null;
+			this.endPoint = null;
+			this.startPort = null;
+			this.endPort = null;
+			
+			this.canvas.repaint();
 		}
-
-	}
-	
-    public void paint(Graphics g) {
-    	Graphics2D g2 = (Graphics2D)g;
-    	g2.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
-    	
-    	// Antaliasing
-    	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setColor(Color.black);
-		g2.drawLine(this.startPoint.x, this.startPoint.y, this.endPoint.x, this.endPoint.y);
 	}
 }

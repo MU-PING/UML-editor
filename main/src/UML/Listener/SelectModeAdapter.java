@@ -40,5 +40,7 @@ public class SelectModeAdapter extends MouseAdapter{
 		int move_y = e.getPoint().y - clickPoint.y;
 
 		graphObject.startPointTranslate(move_x, move_y);
+		
+		this.canvas.repaint();
 	}
 }

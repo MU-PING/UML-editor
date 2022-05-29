@@ -10,10 +10,17 @@ import java.util.Comparator;
 import Frame.CanvasTabPane;
 import UML.Canvas;
 import UML.CanvasObject.CompositeObject;
+import UML.CanvasObject.Connection;
 import UML.CanvasObject.GraphObject;
+import UML.CanvasObject.Port;
 
 public class GroupMode extends Mode {
 
+	private Canvas canvas;
+	private ArrayList<GraphObject> selectedGraphObjects;
+	private ArrayList<Connection> connections;
+	private Rectangle pointSize;
+	
 	public GroupMode(String name) {
 		super(name);
 	}
@@ -21,26 +28,27 @@ public class GroupMode extends Mode {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		ArrayList<GraphObject> selectedGraphObjects = canvas.getSelectedGraphObjects();
-		Rectangle pointSize = calcCompositeObject(selectedGraphObjects);
+		this.canvas = this.canvasTabPane.getCurrentCanvas();
+		this.selectedGraphObjects = this.canvas.getSelectedGraphObjects();
+		this.connections = this.calcConnection();
+		this.pointSize = this.calcCompositeObject();
 
 		// group selected objects
-		CompositeObject compositeObject = new CompositeObject(canvas, pointSize, selectedGraphObjects);
+		CompositeObject compositeObject = new CompositeObject(this.canvas, pointSize, this.selectedGraphObjects, this.connections);
 
-		canvas.groupRemove();
-		canvas.clearSelectedGraphObjects();
-		canvas.addGraphObject(compositeObject);
+		this.canvas.groupRemove();
+		this.canvas.clearSelectedGraphObjects();
+		this.canvas.addGraphObject(compositeObject);
 	}
 
-	private Rectangle calcCompositeObject(ArrayList<GraphObject> selectedGraphObjects) {
+	private Rectangle calcCompositeObject() {
 
 		ArrayList<Point> point_upper_left = new ArrayList<Point>();
 		ArrayList<Point> point_lower_right = new ArrayList<Point>();
 		int top, bottom, left, right;
 		int padding = 20;
 
-		for (GraphObject currentObject : selectedGraphObjects) {
+		for (GraphObject currentObject : this.selectedGraphObjects) {
 
 			point_upper_left.add(currentObject.getStartPoint());
 			point_lower_right.add(currentObject.getEndPoint());
@@ -62,9 +70,26 @@ public class GroupMode extends Mode {
 		Rectangle pointSize = new Rectangle(left, top, right - left, bottom - top);
 
 		return pointSize;
-
 	}
-
+	
+	private ArrayList<Connection> calcConnection() {
+		ArrayList<Connection> connections = new ArrayList<Connection>();
+		
+		for (Connection currentObject : this.canvas.getConnection()) {
+			System.out.println(currentObject.check);
+			if(currentObject.check() == 2) {
+				connections.add(currentObject);
+				this.canvas.deleteConnection(currentObject);
+			}
+			else if(currentObject.check() == 1){
+				currentObject.remove();
+				this.canvas.deleteConnection(currentObject);
+			}
+			
+		}
+		return connections;
+	}
+	
 	class PointSortX implements Comparator<Point> {
 		@Override
 		public int compare(Point o1, Point o2) {

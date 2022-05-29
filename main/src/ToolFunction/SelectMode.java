@@ -15,6 +15,7 @@ public class SelectMode extends Mode{
 	private Point startPoint = null;
 	private Point endPoint = null;
 	
+	
 	public SelectMode(String displayName){
 		super(displayName);
 	}
@@ -22,27 +23,23 @@ public class SelectMode extends Mode{
 	@Override
 	public void action() {
 		super.action();
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.addSelectModeAdapters();
+		this.canvas.addSelectModeAdapters();
 	}
 	
 	@Override
 	public void mousePressed(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.clearSelectedGraphObjects();
+		this.canvas.clearSelectedGraphObjects();
 		this.startPoint = e.getPoint();
 	}
 	
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		this.endPoint = e.getPoint();
-		canvas.repaint();
+		this.canvas.repaint();
 	}
 	
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
 		
 		if(startPoint!=null && endPoint != null) {
 			int mnx, mny;
@@ -54,12 +51,12 @@ public class SelectMode extends Mode{
 			
 			// record the selected area 
 			Rectangle area = new Rectangle(mnx, mny, mxx - mnx, mxy - mny);
-			canvas.addSelectedGraphObjects(area);
+			this.canvas.addSelectedGraphObjects(area);
 
 		}
 		this.startPoint = null;
 		this.endPoint = null;
-		canvas.repaint();
+		this.canvas.repaint();
 	}
 	
 	@Override

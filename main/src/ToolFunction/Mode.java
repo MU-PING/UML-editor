@@ -17,6 +17,7 @@ public class Mode implements ActionListener{
 	
 	private String displayName;
 	protected CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
+	protected Canvas canvas;
 	private JToggleButton toggleButton = new JToggleButton();
 	private ImageIcon selectedImg, unselectedImg;
 
@@ -53,10 +54,10 @@ public class Mode implements ActionListener{
 	
 	public void action() {
 		this.canvasTabPane.setMode(this);
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
-		canvas.addDefaultAdapters();
-		canvas.deleteSelectModeAdapters();
-		canvas.clearSelectedGraphObjects();
+		this.canvas = this.canvasTabPane.getCurrentCanvas();
+		this.canvas.addDefaultAdapters();
+		this.canvas.deleteSelectModeAdapters();
+		this.canvas.clearSelectedGraphObjects();
 	}
 
 	public void mouseClicked(MouseEvent e) {}
