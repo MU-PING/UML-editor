@@ -1,24 +1,16 @@
 package ToolFunction;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import Frame.CanvasTabPane;
-import UML.Canvas;
+import UML.CanvasLine.Association;
+import UML.CanvasLine.General;
 
-public class GeneralMode extends Mode{
-	
+public class GeneralMode extends LineMode{
 	
 	public GeneralMode(String displayName){
 		super(displayName);
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
+	public Association generateConnection() {
+		return new General(this.canvas, this.startPort, this.endPort);
 	}
 }

@@ -30,6 +30,7 @@ public class SelectMode extends Mode{
 	public void mousePressed(MouseEvent e) {
 		this.canvas.clearSelectedGraphObjects();
 		this.startPoint = e.getPoint();
+		this.canvas.repaint();
 	}
 	
 	@Override
@@ -67,7 +68,7 @@ public class SelectMode extends Mode{
 			
 			Graphics2D g2d = (Graphics2D) g;
 			g2d.setColor(Color.BLACK);
-			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.1f));
+			g2d.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.2f));
 			mnx = Math.min(this.startPoint.x, this.endPoint.x);
 			mny = Math.min(this.startPoint.y, this.endPoint.y);
 			mxx = Math.max(this.startPoint.x, this.endPoint.x);

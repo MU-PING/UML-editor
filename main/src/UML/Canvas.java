@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import ToolFunction.Mode;
-import UML.CanvasObject.Connection;
+import UML.CanvasLine.Association;
 import UML.CanvasObject.GraphObject;
 import UML.CanvasObject.Port;
 
@@ -26,7 +26,7 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 
 	private ArrayList<GraphObject> graphObjects = new ArrayList<>();
 	private ArrayList<GraphObject> selectedGraphObjects = new ArrayList<>();
-	private ArrayList<Connection> connections = new ArrayList<>();
+	private ArrayList<Association> connections = new ArrayList<>();
 
 	private Mode mode;
 
@@ -107,13 +107,13 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	}
 	
 	// add one connection
-	public final void addConnection(Connection connection) {
+	public final void addConnection(Association connection) {
 		this.connections.add(connection);
 		System.out.printf("Add Connection: %s \n", this.connections.size());
 	}
 	
 	// delete selected connections
-	public final void deleteConnection(Connection deleteConnections) {
+	public final void deleteConnection(Association deleteConnections) {
 		this.connections.remove(deleteConnections);
 		System.out.printf("Remove Connection: %s \n", this.connections.size());
 	}
@@ -149,8 +149,8 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 		return new ArrayList<GraphObject>(this.selectedGraphObjects);
 	}
 	
-	public final ArrayList<Connection> getConnection() {
-		return new ArrayList<Connection>(this.connections);
+	public final ArrayList<Association> getConnection() {
+		return new ArrayList<Association>(this.connections);
 	}
 
 	// MouseListener
@@ -193,25 +193,9 @@ public class Canvas extends JPanel implements MouseListener, MouseMotionListener
 	public void paint(Graphics g) {
 		super.paint(g);
 		this.mode.paint(g);
-	
-		Port port1;
-		Port port2;
-		Point toPoint1;
-		Point toPoint2;
 		
-		Graphics2D g2 = (Graphics2D)g;
-    	g2.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
-    	g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setColor(new Color(79, 79, 79));
-		
-		for(Connection connect : this.connections) {
-			port1  = connect.getPort1();
-			port2  = connect.getPort2();
-			
-			toPoint1 = SwingUtilities.convertPoint(port1, port1.getCenter(), this);
-			toPoint2 = SwingUtilities.convertPoint(port2, port2.getCenter(), this); 
-			
-			g2.drawLine(toPoint1.x, toPoint1.y, toPoint2.x, toPoint2.y);
+		for(Association current : this.connections) {
+			current.drawLine(g);
 		}
 	}
 }

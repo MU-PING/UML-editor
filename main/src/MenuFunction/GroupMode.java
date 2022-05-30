@@ -9,8 +9,8 @@ import java.util.Comparator;
 
 import Frame.CanvasTabPane;
 import UML.Canvas;
+import UML.CanvasLine.Association;
 import UML.CanvasObject.CompositeObject;
-import UML.CanvasObject.Connection;
 import UML.CanvasObject.GraphObject;
 import UML.CanvasObject.Port;
 
@@ -18,7 +18,7 @@ public class GroupMode extends Mode {
 
 	private Canvas canvas;
 	private ArrayList<GraphObject> selectedGraphObjects;
-	private ArrayList<Connection> connections;
+	private ArrayList<Association> connections;
 	private Rectangle pointSize;
 	
 	public GroupMode(String name) {
@@ -72,11 +72,10 @@ public class GroupMode extends Mode {
 		return pointSize;
 	}
 	
-	private ArrayList<Connection> calcConnection() {
-		ArrayList<Connection> connections = new ArrayList<Connection>();
+	private ArrayList<Association> calcConnection() {
+		ArrayList<Association> connections = new ArrayList<Association>();
 		
-		for (Connection currentObject : this.canvas.getConnection()) {
-			System.out.println(currentObject.check);
+		for (Association currentObject : this.canvas.getConnection()) {
 			if(currentObject.check() == 2) {
 				connections.add(currentObject);
 				this.canvas.deleteConnection(currentObject);

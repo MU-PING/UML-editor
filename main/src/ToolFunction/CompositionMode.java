@@ -1,19 +1,17 @@
 package ToolFunction;
 
-import java.awt.Point;
-import java.awt.event.ActionEvent;
+import UML.CanvasLine.Composition;
+import UML.CanvasLine.Association;
 
-import Frame.CanvasTabPane;
-
-public class CompositionMode extends Mode{
-	
+public class CompositionMode extends LineMode{
 	
 	public CompositionMode(String displayName){
 		super(displayName);
 	}
-	
+
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		super.actionPerformed(e);
+	public Association generateConnection() {
+		return new Composition(this.canvas, this.startPort, this.endPort);
 	}
+
 }

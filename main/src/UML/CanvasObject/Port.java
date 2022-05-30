@@ -8,13 +8,15 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
+import UML.CanvasLine.Association;
+
 public class Port extends JPanel{
 
 	private Point startPoint;
 	private Dimension size;
 	private Rectangle pointSize;
 	private Point center;
-	private ArrayList<Connection> connections = new ArrayList<>();
+	private ArrayList<Association> connections = new ArrayList<>();
 
 	
 	public Port(Point startPoint, int portsize) {
@@ -36,15 +38,15 @@ public class Port extends JPanel{
 		return this.center;
 	}
 	
-	public void setConnection(Connection connection) {
+	public void setConnection(Association connection) {
 		this.connections.add(connection);
 	}
 	
-	public ArrayList<Connection> getConnection() {
+	public ArrayList<Association> getConnection() {
 		return this.connections;
 	}
 	
-	public void removeConnection(Connection connection) {
+	public void removeConnection(Association connection) {
 		this.connections.remove(connection);
 	}
 }

@@ -13,14 +13,15 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.TitledBorder;
 
 import UML.Canvas;
+import UML.CanvasLine.Association;
 
 public class CompositeObject extends GraphObject {
 
 	private ArrayList<GraphObject> selectedGraphObjects;
-	private ArrayList<Connection> connections;
+	private ArrayList<Association> connections;
 
 	public CompositeObject(Canvas canvas, Rectangle pointSize, ArrayList<GraphObject> selectedGraphObjects,
-			ArrayList<Connection> connections) {
+			ArrayList<Association> connections) {
 
 		super(canvas, pointSize, new Color(238, 248, 233));
 
@@ -37,6 +38,11 @@ public class CompositeObject extends GraphObject {
 			currentObject.deleteSelectModeAdapter();
 			this.add(currentObject);
 		}
+		
+		for (Association currentObject : this.connections) {
+			currentObject.setJPanel(this);
+		}
+		
 		this.repaint();
 	}
 
@@ -50,7 +56,8 @@ public class CompositeObject extends GraphObject {
 			this.canvas.addGraphObject(currentObject);
 		}
 		
-		for(Connection currentObject: this.connections) {
+		for(Association currentObject: this.connections) {
+			currentObject.setJPanel(this.canvas);
 			this.canvas.addConnection(currentObject);
 		}
 		
@@ -61,24 +68,8 @@ public class CompositeObject extends GraphObject {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		Port port1;
-		Port port2;
-		Point toPoint1;
-		Point toPoint2;
-
-		Graphics2D g2 = (Graphics2D) g;
-		g2.setStroke(new BasicStroke(3f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
-		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		g2.setColor(new Color(79, 79, 79));
-
-		for (Connection connect : this.connections) {
-			port1 = connect.getPort1();
-			port2 = connect.getPort2();
-
-			toPoint1 = SwingUtilities.convertPoint(port1, port1.getCenter(), this);
-			toPoint2 = SwingUtilities.convertPoint(port2, port2.getCenter(), this);
-
-			g2.drawLine(toPoint1.x, toPoint1.y, toPoint2.x, toPoint2.y);
+		for(Association current : this.connections) {
+			current.drawLine(g);
 		}
 	}
 }

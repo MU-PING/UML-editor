@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import UML.Canvas;
+import UML.CanvasLine.Association;
 import UML.Listener.SelectModeAdapter;
 
 public class BasicObject extends GraphObject {
@@ -102,7 +103,7 @@ public class BasicObject extends GraphObject {
 		for (Port currentPort : ports) {
 			currentPort.setVisible(true);
 			
-			for(Connection connection: currentPort.getConnection()) {
+			for(Association connection: currentPort.getConnection()) {
 				connection.addCheck();
 			}
 		}
@@ -114,7 +115,7 @@ public class BasicObject extends GraphObject {
 		for (Port currentPort : ports) {
 			currentPort.setVisible(false);
 			
-			for(Connection connection: currentPort.getConnection()) {
+			for(Association connection: currentPort.getConnection()) {
 				connection.deleteCheck();
 			}
 		}
