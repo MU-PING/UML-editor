@@ -25,7 +25,7 @@ public class BasicObject extends GraphObject {
 	protected int portSize = 8;
 
 	protected BasicObject(Canvas canvas, Point startPoint, Dimension size) {
-		super(canvas, new Rectangle(startPoint, size), new Color(238, 243, 203));
+		super(canvas, new Rectangle(startPoint, size), new Color(238, 243, 203), true);
 
 		// superlayout
 		this.setBackground(this.unselectColor);

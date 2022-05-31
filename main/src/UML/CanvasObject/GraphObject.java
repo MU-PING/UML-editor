@@ -22,14 +22,13 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 	protected Point endPoint;
 	protected Color selectColor = new Color(255, 246, 143);
 	protected Color unselectColor;
-
 	protected MouseAdapter selectModeAdapter;
 	protected boolean selectModeAdapter_flag = false;
 	protected boolean defaultAdapter_flag = false;
-	
+	protected boolean port_flag;
 	private Point clickPoint;
 
-	public GraphObject(Canvas canvas, Rectangle pointSize, Color unselectColor) {
+	public GraphObject(Canvas canvas, Rectangle pointSize, Color unselectColor, Boolean port_flag) {
 		this.canvas = canvas;
 		this.pointSize = pointSize;
 		this.startPoint = this.pointSize.getLocation();
@@ -37,11 +36,12 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		this.endPoint = new Point(this.startPoint);
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.unselectColor = unselectColor;
+		this.port_flag = port_flag;
 		this.selectModeAdapter = new SelectModeAdapter(this.canvas);
 
 		this.addMouseListener(this);
 		this.defaultAdapter_flag = true;
-		
+
 		this.setBounds(pointSize);
 	}
 
@@ -101,6 +101,10 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		return this.pointSize;
 	}
 
+	public Boolean getPort_Flag() {
+		return this.port_flag;
+	}
+
 	public void beSelected() {
 		this.setBackground(this.selectColor);
 	}
@@ -121,7 +125,10 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 
 	public void deleteDefaultAdapter() {
 	}
-	
+
+	public Port getNearestPort(Point point) {
+		return null;
+	}
 	// ****** ------------------------- ******
 
 	@Override

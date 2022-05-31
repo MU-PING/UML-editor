@@ -20,7 +20,7 @@ public class CompositeObject extends GraphObject {
 	public CompositeObject(Canvas canvas, Rectangle pointSize, ArrayList<GraphObject> selectedGraphObjects,
 			ArrayList<Association> connections) {
 
-		super(canvas, pointSize, new Color(238, 248, 233));
+		super(canvas, pointSize, new Color(238, 248, 233), false);
 
 		this.selectedGraphObjects = selectedGraphObjects;
 		this.connections = connections;

@@ -7,12 +7,13 @@ import javax.swing.JPanel;
 
 import UML.CanvasLine.Association;
 import UML.CanvasObject.BasicObject;
+import UML.CanvasObject.GraphObject;
 import UML.CanvasObject.Port;
 
 public abstract class LineMode extends Mode {
 
-	private BasicObject startJPanel = null;
-	private BasicObject endJPanel = null;
+	private GraphObject startJPanel = null;
+	private GraphObject endJPanel = null;
 
 	private Point startPoint = null;
 	private Point endPoint = null;
@@ -32,23 +33,31 @@ public abstract class LineMode extends Mode {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		JPanel getJpanel = (JPanel) this.canvas.getComponentAt(e.getPoint());
-
-		if (getJpanel != this.canvas) {
-			this.startJPanel = (BasicObject) getJpanel;
-			this.startPoint = e.getPoint();
+		JPanel jpanelcheck1 = (JPanel) this.canvas.getComponentAt(e.getPoint());
+		GraphObject jpanelcheck2;
+		
+		if (jpanelcheck1 != this.canvas) {
+			jpanelcheck2 = (GraphObject) jpanelcheck1;
+			if(jpanelcheck2.getPort_Flag()) {
+				this.startJPanel = jpanelcheck2;
+				this.startPoint = e.getPoint();
+			}
 		}
 	}
 
 	public void mouseReleased(MouseEvent e) {
-		JPanel getJpanel = (JPanel) this.canvas.getComponentAt(e.getPoint());
-
-		if (getJpanel != this.canvas & getJpanel != this.startJPanel) {
-			this.endJPanel = (BasicObject) getJpanel;
-			this.endPoint = e.getPoint();
+		JPanel jpanelcheck1 = (JPanel) this.canvas.getComponentAt(e.getPoint());
+		GraphObject jpanelcheck2;
+		
+		if (jpanelcheck1 != this.canvas) {
+			jpanelcheck2 = (GraphObject) jpanelcheck1;
+			if(jpanelcheck2.getPort_Flag() && jpanelcheck2!= this.startJPanel) {
+				this.endJPanel  = jpanelcheck2;
+				this.endPoint   = e.getPoint();
+			}
 		}
 
-		if (this.startJPanel != null & this.endJPanel != null) {
+		if (this.startJPanel != null && this.endJPanel != null) {
 			this.startPort = this.startJPanel.getNearestPort(this.startPoint);
 			this.endPort = this.endJPanel.getNearestPort(this.endPoint);
 			
