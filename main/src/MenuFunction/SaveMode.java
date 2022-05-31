@@ -2,8 +2,6 @@ package MenuFunction;
 
 import java.awt.event.ActionEvent;
 
-import Frame.CanvasTabPane;
-
 public class SaveMode extends Mode{
 
 	public SaveMode(String name) {

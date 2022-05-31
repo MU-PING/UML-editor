@@ -6,8 +6,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.MouseAdapter;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -17,7 +15,6 @@ import javax.swing.SwingUtilities;
 
 import UML.Canvas;
 import UML.CanvasLine.Association;
-import UML.Listener.SelectModeAdapter;
 
 public class BasicObject extends GraphObject {
 

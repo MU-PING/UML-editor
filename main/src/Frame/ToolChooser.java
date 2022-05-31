@@ -1,11 +1,18 @@
 package Frame;
 
-import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.event.*;
+import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.awt.*;
-import ToolFunction.*;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
+
+import ToolFunction.AssociationMode;
+import ToolFunction.ClassMode;
+import ToolFunction.CompositionMode;
+import ToolFunction.GeneralMode;
+import ToolFunction.Mode;
+import ToolFunction.SelectMode;
+import ToolFunction.UsecaseMode;
 
 public class ToolChooser extends JPanel{
 	

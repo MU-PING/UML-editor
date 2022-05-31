@@ -10,7 +10,6 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import UML.Canvas;
 import UML.CanvasObject.Port;
 
 public class Association {

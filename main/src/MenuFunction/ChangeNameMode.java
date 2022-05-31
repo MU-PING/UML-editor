@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import Frame.CanvasTabPane;
 import UML.Canvas;
 import UML.CanvasObject.GraphObject;
 
@@ -29,7 +28,7 @@ public class ChangeNameMode extends Mode {
 			JOptionPane.showMessageDialog(this.canvasTabPane, "Selected more than one component", "Warning",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one basic object", "Warning",
+			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one basic component", "Warning",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

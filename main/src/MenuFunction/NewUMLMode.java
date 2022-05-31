@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.JOptionPane;
 
-import Frame.CanvasTabPane;
-
 public class NewUMLMode extends Mode{
 
 	public NewUMLMode(String name) {

@@ -1,8 +1,6 @@
 package ToolFunction;
 import java.awt.event.MouseEvent;
-import Frame.CanvasTabPane;
-import UML.Canvas;
-import UML.CanvasObject.ClassBasic;
+
 import UML.CanvasObject.UsecaseBasic;
 
 public class UsecaseMode extends Mode{

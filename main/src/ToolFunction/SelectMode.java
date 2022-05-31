@@ -8,8 +8,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
-import UML.Canvas;
-
 public class SelectMode extends Mode{
 	
 	private Point startPoint = null;

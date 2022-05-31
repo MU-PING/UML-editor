@@ -1,12 +1,9 @@
 package UML.CanvasObject;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.RenderingHints;
 import java.util.ArrayList;
 
 import javax.swing.SwingUtilities;

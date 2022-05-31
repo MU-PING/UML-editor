@@ -1,10 +1,7 @@
 package ToolFunction;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
-import Frame.CanvasTabPane;
-import UML.Canvas;
 import UML.CanvasObject.ClassBasic;
 
 public class ClassMode extends Mode{

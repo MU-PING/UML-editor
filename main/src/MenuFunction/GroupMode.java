@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import Frame.CanvasTabPane;
+import javax.swing.JOptionPane;
+
 import UML.Canvas;
 import UML.CanvasLine.Association;
 import UML.CanvasObject.CompositeObject;
 import UML.CanvasObject.GraphObject;
-import UML.CanvasObject.Port;
 
 public class GroupMode extends Mode {
 
@@ -31,14 +31,22 @@ public class GroupMode extends Mode {
 		this.canvas = this.canvasTabPane.getCurrentCanvas();
 		this.selectedGraphObjects = this.canvas.getSelectedGraphObjects();
 		this.connections = this.calcConnection();
-		this.pointSize = this.calcCompositeObject();
+		
+		if (this.selectedGraphObjects.size() != 0) {
+			// calculate CompositeObject size
+			this.pointSize = this.calcCompositeObject();
+			
+			// group selected objects
+			CompositeObject compositeObject = new CompositeObject(this.canvas, pointSize, this.selectedGraphObjects, this.connections);
 
-		// group selected objects
-		CompositeObject compositeObject = new CompositeObject(this.canvas, pointSize, this.selectedGraphObjects, this.connections);
-
-		this.canvas.groupRemove();
-		this.canvas.clearSelectedGraphObjects();
-		this.canvas.addGraphObject(compositeObject);
+			this.canvas.groupRemove();
+			this.canvas.clearSelectedGraphObjects();
+			this.canvas.addGraphObject(compositeObject);
+		}
+		else {
+			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one or more components", "Warning",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private Rectangle calcCompositeObject() {
