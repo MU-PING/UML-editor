@@ -14,7 +14,6 @@ import UML.Canvas;
 
 public class Mode implements ActionListener {
 
-	protected Canvas canvas;
 	private JToggleButton toggleButton = new JToggleButton();
 
 	protected Mode(String name) {
@@ -47,31 +46,31 @@ public class Mode implements ActionListener {
 
 	public void action() {
 		CanvasTabPane_Singleton.getInstance().setMode(this);
-		this.canvas = CanvasTabPane_Singleton.getInstance().getCurrentCanvas();
-		this.canvas.addDefaultAdapters();
-		this.canvas.deleteSelectModeAdapters();
-		this.canvas.clearSelectedGraphObjects();
+		Canvas canvas = CanvasTabPane_Singleton.getInstance().getCurrentCanvas();
+		canvas.addDefaultAdapters();
+		canvas.deleteSelectModeAdapters();
+		canvas.clearSelectedGraphObjects();
 	}
 
-	public void mouseClicked(MouseEvent e) {
+	public void mouseClicked(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mousePressed(MouseEvent e) {
+	public void mousePressed(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mouseEntered(MouseEvent e) {
+	public void mouseEntered(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mouseExited(MouseEvent e) {
+	public void mouseExited(MouseEvent e, Canvas canvas) {
 	}
 
-	public void mouseMoved(MouseEvent e) {
+	public void mouseMoved(MouseEvent e, Canvas canvas) {
 	}
 
 	public void paint(Graphics g) {

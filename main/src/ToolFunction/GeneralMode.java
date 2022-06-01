@@ -1,5 +1,6 @@
 package ToolFunction;
 
+import UML.Canvas;
 import UML.CanvasLine.Association;
 import UML.CanvasLine.General;
 
@@ -10,7 +11,7 @@ public class GeneralMode extends LineMode {
 	}
 
 	@Override
-	public Association generateConnection() {
-		return new General(this.canvas, this.startPort, this.endPort);
+	public Association generateConnection(Canvas canvas) {
+		return new General(canvas, this.startPort, this.endPort);
 	}
 }

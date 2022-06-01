@@ -8,6 +8,9 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 
+import Frame.CanvasTabPane_Singleton;
+import UML.Canvas;
+
 public class SelectMode extends Mode {
 
 	private Point startPoint = null;
@@ -20,24 +23,24 @@ public class SelectMode extends Mode {
 	@Override
 	public void action() {
 		super.action();
-		this.canvas.addSelectModeAdapters();
+		CanvasTabPane_Singleton.getInstance().getCurrentCanvas().addSelectModeAdapters();
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		this.canvas.clearSelectedGraphObjects();
+	public void mousePressed(MouseEvent e, Canvas canvas) {
+		canvas.clearSelectedGraphObjects();
 		this.startPoint = e.getPoint();
-		this.canvas.repaint();
+		canvas.repaint();
 	}
 
 	@Override
-	public void mouseDragged(MouseEvent e) {
+	public void mouseDragged(MouseEvent e, Canvas canvas) {
 		this.endPoint = e.getPoint();
-		this.canvas.repaint();
+		canvas.repaint();
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {
+	public void mouseReleased(MouseEvent e, Canvas canvas) {
 
 		if (startPoint != null && endPoint != null) {
 			int mnx, mny;
@@ -49,12 +52,12 @@ public class SelectMode extends Mode {
 
 			// record the selected area
 			Rectangle area = new Rectangle(mnx, mny, mxx - mnx, mxy - mny);
-			this.canvas.addSelectedGraphObjects(area);
+			canvas.addSelectedGraphObjects(area);
 
 		}
 		this.startPoint = null;
 		this.endPoint = null;
-		this.canvas.repaint();
+		canvas.repaint();
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package ToolFunction;
 
 import java.awt.event.MouseEvent;
 
+import UML.Canvas;
 import UML.CanvasObject.UsecaseBasic;
 
 public class UsecaseMode extends Mode {
@@ -11,8 +12,8 @@ public class UsecaseMode extends Mode {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		this.canvas.addGraphObject(new UsecaseBasic(canvas, e.getPoint()));
+	public void mousePressed(MouseEvent e, Canvas canvas) {
+		canvas.addGraphObject(new UsecaseBasic(canvas, e.getPoint()));
 
 	}
 

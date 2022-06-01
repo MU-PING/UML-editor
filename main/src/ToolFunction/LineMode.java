@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
 
+import Frame.CanvasTabPane_Singleton;
+import UML.Canvas;
 import UML.CanvasLine.Association;
 import UML.CanvasObject.GraphObject;
 import UML.CanvasObject.Port;
@@ -27,15 +29,15 @@ public abstract class LineMode extends Mode {
 	@Override
 	public void action() {
 		super.action();
-		this.canvas.deleteDefaultAdapters();
+		CanvasTabPane_Singleton.getInstance().getCurrentCanvas().deleteDefaultAdapters();
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		JPanel jpanelcheck1 = (JPanel) this.canvas.getComponentAt(e.getPoint());
+	public void mousePressed(MouseEvent e, Canvas canvas) {
+		JPanel jpanelcheck1 = (JPanel) canvas.getComponentAt(e.getPoint());
 		GraphObject jpanelcheck2;
 
-		if (jpanelcheck1 != this.canvas) {
+		if (jpanelcheck1 != canvas) {
 			jpanelcheck2 = (GraphObject) jpanelcheck1;
 			if (jpanelcheck2.getPort_Flag()) {
 				this.startJPanel = jpanelcheck2;
@@ -44,11 +46,11 @@ public abstract class LineMode extends Mode {
 		}
 	}
 
-	public void mouseReleased(MouseEvent e) {
-		JPanel jpanelcheck1 = (JPanel) this.canvas.getComponentAt(e.getPoint());
+	public void mouseReleased(MouseEvent e, Canvas canvas) {
+		JPanel jpanelcheck1 = (JPanel) canvas.getComponentAt(e.getPoint());
 		GraphObject jpanelcheck2;
 
-		if (jpanelcheck1 != this.canvas) {
+		if (jpanelcheck1 != canvas) {
 			jpanelcheck2 = (GraphObject) jpanelcheck1;
 			if (jpanelcheck2.getPort_Flag() && jpanelcheck2 != this.startJPanel) {
 				this.endJPanel = jpanelcheck2;
@@ -60,11 +62,11 @@ public abstract class LineMode extends Mode {
 			this.startPort = this.startJPanel.getNearestPort(this.startPoint);
 			this.endPort = this.endJPanel.getNearestPort(this.endPoint);
 
-			Association connection = this.generateConnection();
+			Association connection = this.generateConnection(canvas);
 
 			this.startPort.setConnection(connection);
 			this.endPort.setConnection(connection);
-			this.canvas.addConnection(connection);
+			canvas.addConnection(connection);
 
 			this.startJPanel = null;
 			this.endJPanel = null;
@@ -73,9 +75,9 @@ public abstract class LineMode extends Mode {
 			this.startPort = null;
 			this.endPort = null;
 
-			this.canvas.repaint();
+			canvas.repaint();
 		}
 	}
 
-	public abstract Association generateConnection();
+	public abstract Association generateConnection(Canvas canvas);
 }

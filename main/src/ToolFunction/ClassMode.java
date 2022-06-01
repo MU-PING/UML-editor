@@ -2,6 +2,7 @@ package ToolFunction;
 
 import java.awt.event.MouseEvent;
 
+import UML.Canvas;
 import UML.CanvasObject.ClassBasic;
 
 public class ClassMode extends Mode {
@@ -11,7 +12,7 @@ public class ClassMode extends Mode {
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {
-		this.canvas.addGraphObject(new ClassBasic(this.canvas, e.getPoint()));
+	public void mousePressed(MouseEvent e, Canvas canvas) {
+		canvas.addGraphObject(new ClassBasic(canvas, e.getPoint()));
 	}
 }
