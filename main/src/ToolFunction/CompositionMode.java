@@ -1,11 +1,11 @@
 package ToolFunction;
 
-import UML.CanvasLine.Composition;
 import UML.CanvasLine.Association;
+import UML.CanvasLine.Composition;
 
-public class CompositionMode extends LineMode{
-	
-	public CompositionMode(String displayName){
+public class CompositionMode extends LineMode {
+
+	public CompositionMode(String displayName) {
 		super(displayName);
 	}
 

@@ -9,6 +9,7 @@ import java.util.Comparator;
 
 import javax.swing.JOptionPane;
 
+import Frame.CanvasTabPane_Singleton;
 import UML.Canvas;
 import UML.CanvasLine.Association;
 import UML.CanvasObject.CompositeObject;
@@ -23,24 +24,23 @@ public class GroupMode extends Mode {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
+		Canvas canvas = CanvasTabPane_Singleton.getInstance().getCurrentCanvas();
 		ArrayList<GraphObject> selectedGraphObjects = canvas.getSelectedGraphObjects();
 		ArrayList<Association> connections = this.calcConnection(canvas);
-		
+
 		if (selectedGraphObjects.size() != 0) {
 			// calculate CompositeObject size
 			Rectangle pointSize = this.calcCompositeObject(selectedGraphObjects);
-			
+
 			// group selected objects
 			CompositeObject compositeObject = new CompositeObject(canvas, pointSize, selectedGraphObjects, connections);
 
 			canvas.groupRemove();
 			canvas.clearSelectedGraphObjects();
 			canvas.addGraphObject(compositeObject);
-		}
-		else {
-			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one or more components", "Warning",
-					JOptionPane.ERROR_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Please select one or more components",
+					"Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -74,23 +74,22 @@ public class GroupMode extends Mode {
 
 		return pointSize;
 	}
-	
+
 	private ArrayList<Association> calcConnection(Canvas canvas) {
 		ArrayList<Association> connections = new ArrayList<Association>();
-		
+
 		for (Association currentObject : canvas.getConnection()) {
-			if(currentObject.check() == 2) {
+			if (currentObject.check() == 2) {
 				connections.add(currentObject);
 				canvas.deleteConnection(currentObject);
-			}
-			else if(currentObject.check() == 1){
+			} else if (currentObject.check() == 1) {
 				currentObject.remove();
 				canvas.deleteConnection(currentObject);
 			}
 		}
 		return connections;
 	}
-	
+
 	class PointSortX implements Comparator<Point> {
 		@Override
 		public int compare(Point o1, Point o2) {

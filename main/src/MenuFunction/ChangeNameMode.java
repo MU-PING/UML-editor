@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
+import Frame.CanvasTabPane_Singleton;
 import UML.Canvas;
 import UML.CanvasObject.GraphObject;
 
@@ -17,7 +18,7 @@ public class ChangeNameMode extends Mode {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
+		Canvas canvas = CanvasTabPane_Singleton.getInstance().getCurrentCanvas();
 		ArrayList<GraphObject> selectedGraphObjects = canvas.getSelectedGraphObjects();
 
 		if (selectedGraphObjects.size() == 1) {
@@ -25,10 +26,10 @@ public class ChangeNameMode extends Mode {
 		}
 
 		else if (selectedGraphObjects.size() > 1) {
-			JOptionPane.showMessageDialog(this.canvasTabPane, "Selected more than one component", "Warning",
+			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Selected more than one component", "Warning",
 					JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one basic component", "Warning",
+			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Please select one basic component", "Warning",
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}

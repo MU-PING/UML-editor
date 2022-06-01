@@ -6,7 +6,7 @@ public class AssociationMode extends LineMode {
 
 	public AssociationMode(String displayName) {
 		super(displayName);
-		
+
 	}
 
 	@Override

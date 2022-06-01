@@ -2,7 +2,7 @@ package MenuFunction;
 
 import java.awt.event.ActionEvent;
 
-public class SaveMode extends Mode{
+public class SaveMode extends Mode {
 
 	public SaveMode(String name) {
 		super(name);
@@ -12,7 +12,7 @@ public class SaveMode extends Mode{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

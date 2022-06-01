@@ -78,15 +78,15 @@ public class BasicObject extends GraphObject {
 	}
 
 	public Port getNearestPort(Point point) {
-		Point toPoint ;
-		
+		Point toPoint;
+
 		Port mim_port = null;
 		Double mim_distance = Double.POSITIVE_INFINITY;
 		Double distance;
-		for(Port port : ports) {
+		for (Port port : ports) {
 			toPoint = SwingUtilities.convertPoint(port, port.getCenter(), this.canvas);
 			distance = toPoint.distance(point);
-			if(mim_distance > distance) {
+			if (mim_distance > distance) {
 				mim_distance = distance;
 				mim_port = port;
 			}
@@ -99,8 +99,8 @@ public class BasicObject extends GraphObject {
 		super.beSelected();
 		for (Port currentPort : ports) {
 			currentPort.setVisible(true);
-			
-			for(Association connection: currentPort.getConnection()) {
+
+			for (Association connection : currentPort.getConnection()) {
 				connection.addCheck();
 			}
 		}
@@ -111,8 +111,8 @@ public class BasicObject extends GraphObject {
 		super.beUnSelected();
 		for (Port currentPort : ports) {
 			currentPort.setVisible(false);
-			
-			for(Association connection: currentPort.getConnection()) {
+
+			for (Association connection : currentPort.getConnection()) {
 				connection.deleteCheck();
 			}
 		}

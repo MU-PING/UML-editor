@@ -1,9 +1,9 @@
 package Frame;
 
-// java GUI component
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 
+// java GUI component
+import javax.swing.JFrame;
 // setting java GUI style
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;

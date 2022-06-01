@@ -35,11 +35,11 @@ public class CompositeObject extends GraphObject {
 			currentObject.deleteSelectModeAdapter();
 			this.add(currentObject);
 		}
-		
+
 		for (Association currentObject : this.connections) {
 			currentObject.setJPanel(this);
 		}
-		
+
 		this.repaint();
 	}
 
@@ -52,12 +52,12 @@ public class CompositeObject extends GraphObject {
 			currentObject.addSelectModeAdapter();
 			this.canvas.addGraphObject(currentObject);
 		}
-		
-		for(Association currentObject: this.connections) {
+
+		for (Association currentObject : this.connections) {
 			currentObject.setJPanel(this.canvas);
 			this.canvas.addConnection(currentObject);
 		}
-		
+
 		this.canvas.ungroupRemove(this);
 	}
 
@@ -65,7 +65,7 @@ public class CompositeObject extends GraphObject {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		for(Association current : this.connections) {
+		for (Association current : this.connections) {
 			current.drawLine(g);
 		}
 	}

@@ -14,14 +14,11 @@ import ToolFunction.Mode;
 import ToolFunction.SelectMode;
 import ToolFunction.UsecaseMode;
 
-public class ToolChooser extends JPanel{
-	
-	// Help Mode control Canvas
-	private CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
-	
+public class ToolChooser extends JPanel {
+
 	// Button nanager
 	private ButtonGroup listGroup = new ButtonGroup();
-	
+
 	// Polymorphism to manage Mode
 	private ArrayList<Mode> modes = new ArrayList<Mode>();
 
@@ -33,13 +30,13 @@ public class ToolChooser extends JPanel{
 		modes.add(new CompositionMode("composition"));
 		modes.add(new ClassMode("class"));
 		modes.add(new UsecaseMode("usecase"));
-		
+
 		this.setLayout(new GridLayout(modes.size(), 1));
-		
+
 		// initialize select mode
 		selectMode.getButton().setSelected(true);
-		this.canvasTabPane.initMode(selectMode);
-		
+		CanvasTabPane_Singleton.getInstance().initCanvas(selectMode);
+
 		// init Button
 		for (int i = 0; i < modes.size(); i++) {
 			Mode mode = modes.get(i);

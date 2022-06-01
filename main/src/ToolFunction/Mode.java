@@ -9,63 +9,71 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JToggleButton;
 
-import Frame.CanvasTabPane;
 import Frame.CanvasTabPane_Singleton;
 import UML.Canvas;
 
-public class Mode implements ActionListener{
-	
-	private String displayName;
-	protected CanvasTabPane canvasTabPane = CanvasTabPane_Singleton.getInstance();
+public class Mode implements ActionListener {
+
 	protected Canvas canvas;
 	private JToggleButton toggleButton = new JToggleButton();
-	private ImageIcon selectedImg, unselectedImg;
 
-	protected Mode(String name){
-		
-		this.displayName = name;
-		
+	protected Mode(String name) {
+		ImageIcon selectedImg = null, unselectedImg = null;
 		// set Image
 		try {
-			this.selectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + this.displayName + "0.png")));
-			this.unselectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + this.displayName + "1.png")));
-		}
-		catch (Exception ee) {
+			selectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + name + "0.png")));
+			unselectedImg = new ImageIcon(ImageIO.read(this.getClass().getResource("Icon/" + name + "1.png")));
+		} catch (Exception ee) {
 			System.out.println(ee);
 		}
-		
+
 		// set Button
-		this.toggleButton.setSelectedIcon(this.unselectedImg);
-		this.toggleButton.setIcon(this.selectedImg);
+		this.toggleButton.setSelectedIcon(unselectedImg);
+		this.toggleButton.setIcon(selectedImg);
 		this.toggleButton.setFocusPainted(false);
-		this.toggleButton.setToolTipText(this.displayName);
+		this.toggleButton.setToolTipText(name);
 		this.toggleButton.addActionListener(this);
 	}
-	
+
 	// Member Method cant Override
 	public final JToggleButton getButton() {
 		return this.toggleButton;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.action();
 	}
-	
+
 	public void action() {
-		this.canvasTabPane.setMode(this);
-		this.canvas = this.canvasTabPane.getCurrentCanvas();
+		CanvasTabPane_Singleton.getInstance().setMode(this);
+		this.canvas = CanvasTabPane_Singleton.getInstance().getCurrentCanvas();
 		this.canvas.addDefaultAdapters();
 		this.canvas.deleteSelectModeAdapters();
 		this.canvas.clearSelectedGraphObjects();
 	}
 
-	public void mouseClicked(MouseEvent e) {}
-	public void mousePressed(MouseEvent e) {}
-	public void mouseDragged(MouseEvent e) {}
-	public void mouseReleased(MouseEvent e) {}
-	public void mouseEntered(MouseEvent e) {}
-	public void mouseExited(MouseEvent e) {}
-	public void mouseMoved(MouseEvent e) {}
-	public void paint(Graphics g) {}
+	public void mouseClicked(MouseEvent e) {
+	}
+
+	public void mousePressed(MouseEvent e) {
+	}
+
+	public void mouseDragged(MouseEvent e) {
+	}
+
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	public void mouseEntered(MouseEvent e) {
+	}
+
+	public void mouseExited(MouseEvent e) {
+	}
+
+	public void mouseMoved(MouseEvent e) {
+	}
+
+	public void paint(Graphics g) {
+	}
 }

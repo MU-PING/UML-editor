@@ -3,9 +3,9 @@ package ToolFunction;
 import UML.CanvasLine.Association;
 import UML.CanvasLine.General;
 
-public class GeneralMode extends LineMode{
-	
-	public GeneralMode(String displayName){
+public class GeneralMode extends LineMode {
+
+	public GeneralMode(String displayName) {
 		super(displayName);
 	}
 
