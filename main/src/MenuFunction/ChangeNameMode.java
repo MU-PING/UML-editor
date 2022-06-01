@@ -32,5 +32,4 @@ public class ChangeNameMode extends Mode {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
 }

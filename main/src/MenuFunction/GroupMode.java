@@ -16,11 +16,6 @@ import UML.CanvasObject.GraphObject;
 
 public class GroupMode extends Mode {
 
-	private Canvas canvas;
-	private ArrayList<GraphObject> selectedGraphObjects;
-	private ArrayList<Association> connections;
-	private Rectangle pointSize;
-	
 	public GroupMode(String name) {
 		super(name);
 	}
@@ -28,20 +23,20 @@ public class GroupMode extends Mode {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		this.canvas = this.canvasTabPane.getCurrentCanvas();
-		this.selectedGraphObjects = this.canvas.getSelectedGraphObjects();
-		this.connections = this.calcConnection();
+		Canvas canvas = this.canvasTabPane.getCurrentCanvas();
+		ArrayList<GraphObject> selectedGraphObjects = canvas.getSelectedGraphObjects();
+		ArrayList<Association> connections = this.calcConnection(canvas);
 		
-		if (this.selectedGraphObjects.size() != 0) {
+		if (selectedGraphObjects.size() != 0) {
 			// calculate CompositeObject size
-			this.pointSize = this.calcCompositeObject();
+			Rectangle pointSize = this.calcCompositeObject(selectedGraphObjects);
 			
 			// group selected objects
-			CompositeObject compositeObject = new CompositeObject(this.canvas, pointSize, this.selectedGraphObjects, this.connections);
+			CompositeObject compositeObject = new CompositeObject(canvas, pointSize, selectedGraphObjects, connections);
 
-			this.canvas.groupRemove();
-			this.canvas.clearSelectedGraphObjects();
-			this.canvas.addGraphObject(compositeObject);
+			canvas.groupRemove();
+			canvas.clearSelectedGraphObjects();
+			canvas.addGraphObject(compositeObject);
 		}
 		else {
 			JOptionPane.showMessageDialog(this.canvasTabPane, "Please select one or more components", "Warning",
@@ -49,14 +44,14 @@ public class GroupMode extends Mode {
 		}
 	}
 
-	private Rectangle calcCompositeObject() {
+	private Rectangle calcCompositeObject(ArrayList<GraphObject> selectedGraphObjects) {
 
 		ArrayList<Point> point_upper_left = new ArrayList<Point>();
 		ArrayList<Point> point_lower_right = new ArrayList<Point>();
 		int top, bottom, left, right;
 		int padding = 20;
 
-		for (GraphObject currentObject : this.selectedGraphObjects) {
+		for (GraphObject currentObject : selectedGraphObjects) {
 
 			point_upper_left.add(currentObject.getStartPoint());
 			point_lower_right.add(currentObject.getEndPoint());
@@ -80,19 +75,18 @@ public class GroupMode extends Mode {
 		return pointSize;
 	}
 	
-	private ArrayList<Association> calcConnection() {
+	private ArrayList<Association> calcConnection(Canvas canvas) {
 		ArrayList<Association> connections = new ArrayList<Association>();
 		
-		for (Association currentObject : this.canvas.getConnection()) {
+		for (Association currentObject : canvas.getConnection()) {
 			if(currentObject.check() == 2) {
 				connections.add(currentObject);
-				this.canvas.deleteConnection(currentObject);
+				canvas.deleteConnection(currentObject);
 			}
 			else if(currentObject.check() == 1){
 				currentObject.remove();
-				this.canvas.deleteConnection(currentObject);
+				canvas.deleteConnection(currentObject);
 			}
-			
 		}
 		return connections;
 	}
