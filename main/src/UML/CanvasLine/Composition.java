@@ -13,6 +13,7 @@ public class Composition extends Association {
 		super(canvas, port1, port2);
 	}
 
+	@Override
 	public void drawHead(Graphics g) {
 		int x1 = this.toPoint1.x;
 		int y1 = this.toPoint1.y;

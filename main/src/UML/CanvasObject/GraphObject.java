@@ -36,8 +36,9 @@ public abstract class GraphObject extends JPanel implements MouseListener {
 		this.endPoint = new Point(this.startPoint);
 		this.endPoint.translate(this.size.width, this.size.height);
 		this.unselectColor = unselectColor;
-		this.port_flag = port_flag;
 		this.selectModeAdapter = new SelectModeAdapter(this.canvas);
+		this.port_flag = port_flag;
+		
 
 		this.addMouseListener(this);
 		this.defaultAdapter_flag = true;
