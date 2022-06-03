@@ -15,7 +15,7 @@ public class MainFrame extends JFrame {
 		// MainFrame setting
 		this.setTitle("MUML 1.0");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(1280, 720);
+		this.setSize(1580, 920);
 		this.setLayout(new BorderLayout());
 
 		// CanvasTabPane
