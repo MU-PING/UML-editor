@@ -9,16 +9,23 @@ import UML.CanvasObject.Port;
 
 public class General extends Association {
 
-	public General(Canvas canvas, Port port1, Port port2) {
-		super(canvas, port1, port2);
+	public General(Canvas canvas, Port startPort) {
+		super(canvas, startPort);
 	}
-	
+
 	@Override
+	public void drawLine(Graphics g) {
+		super.drawLine(g);
+		this.drawHead(g);
+	}
+
 	public void drawHead(Graphics g) {
-		int x1 = this.toPoint1.x;
-		int y1 = this.toPoint1.y;
-		int x2 = this.toPoint2.x;
-		int y2 = this.toPoint2.y;
+
+		int x1 = this.startPoint.x;
+		int y1 = this.startPoint.y;
+		int x2 = this.endPoint.x;
+		int y2 = this.endPoint.y;
+
 		int d = 8;
 		int h = 6;
 

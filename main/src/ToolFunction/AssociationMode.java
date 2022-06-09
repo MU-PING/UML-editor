@@ -2,6 +2,7 @@ package ToolFunction;
 
 import UML.Canvas;
 import UML.CanvasLine.Association;
+import UML.CanvasObject.Port;
 
 public class AssociationMode extends LineMode {
 
@@ -11,8 +12,8 @@ public class AssociationMode extends LineMode {
 	}
 
 	@Override
-	public Association generateConnection(Canvas canvas) {
-		return new Association(canvas, this.startPort, this.endPort);
+	public Association generateConnection(Canvas canvas, Port startPort) {
+		return new Association(canvas, startPort);
 	}
 
 }

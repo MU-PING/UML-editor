@@ -15,24 +15,23 @@ import UML.CanvasObject.Port;
 public class Association {
 
 	private JPanel canvas;
-	private Port port1;
-	private Port port2;
-	protected Point toPoint1;
-	protected Point toPoint2;
+	private Port startPort;
+	private Port endPort = null;
+	protected Point startPoint;
+	protected Point endPoint;
 	private int check = 0;
 
-	public Association(JPanel canvas, Port port1, Port port2) {
+	public Association(JPanel canvas, Port startPort) {
 		this.canvas = canvas;
-		this.port1 = port1;
-		this.port2 = port2;
+		this.startPort = startPort;
 	}
 
-	public Port getPort1() {
-		return this.port1;
+	public void setEndPort(Port endPort) {
+		this.endPort = endPort;
 	}
 
-	public Port getPort2() {
-		return this.port2;
+	public void setEndPoint(Point endPoint) {
+		this.endPoint = endPoint;
 	}
 
 	public void addCheck() {
@@ -48,15 +47,15 @@ public class Association {
 	}
 
 	public void remove() {
-		this.port1.removeConnection(this);
-		this.port2.removeConnection(this);
+		this.startPort.removeConnection(this);
+		this.endPort.removeConnection(this);
 	}
 
 	public void setJPanel(JPanel canvas) {
 		this.canvas = canvas;
 	}
 
-	public void drawLine(Graphics g) {
+	public Graphics2D setGraphics2D(Graphics g) {
 
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setStroke(new BasicStroke(2.5f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_ROUND));
@@ -68,13 +67,18 @@ public class Association {
 
 		g2.setColor(new Color(120, 120, 120));
 
-		this.toPoint1 = SwingUtilities.convertPoint(this.port1, this.port1.getCenter(), this.canvas);
-		this.toPoint2 = SwingUtilities.convertPoint(this.port2, this.port2.getCenter(), this.canvas);
+		return g2;
 
-		g2.drawLine(this.toPoint1.x, this.toPoint1.y, this.toPoint2.x, this.toPoint2.y);
-		this.drawHead(g2);
 	}
 
-	public void drawHead(Graphics g) {
+	public void drawLine(Graphics g) {
+
+		Graphics2D g2 = this.setGraphics2D(g);
+
+		this.startPoint = SwingUtilities.convertPoint(this.startPort, this.startPort.getCenter(), this.canvas);
+		if (this.endPort != null)
+			this.endPoint = SwingUtilities.convertPoint(this.endPort, this.endPort.getCenter(), this.canvas);
+
+		g2.drawLine(this.startPoint.x, this.startPoint.y, this.endPoint.x, this.endPoint.y);
 	}
 }
