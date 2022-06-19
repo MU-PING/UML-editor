@@ -71,7 +71,6 @@ public abstract class LineMode extends Mode {
 					canvas.addConnection(this.association);
 				}
 			}
-
 		}
 		this.association = null;
 		this.startJPanel = null;
