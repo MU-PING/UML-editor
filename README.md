@@ -1,6 +1,7 @@
 # UML-editor
 
-![20220608_140855_](https://user-images.githubusercontent.com/93152909/172544417-c075270c-5e5c-42e1-b1c0-71c172de5e06.gif)
+![20220620_002917_](https://user-images.githubusercontent.com/93152909/174491142-63a6b2eb-434d-48b5-9919-daf264ea9483.gif)
+
 
 ## Design Pattern
 
