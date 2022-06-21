@@ -26,11 +26,11 @@ public class ChangeNameMode extends Mode {
 		}
 
 		else if (selectedGraphObjects.size() > 1) {
-			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Selected more than one component", "Warning",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Selected more than one component",
+					"Warning", JOptionPane.ERROR_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Please select one basic component", "Warning",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(CanvasTabPane_Singleton.getInstance(), "Please select one basic component",
+					"Warning", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }

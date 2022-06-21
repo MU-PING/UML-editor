@@ -9,7 +9,7 @@ import UML.CanvasObject.GraphObject;
 
 public class SelectModeAdapter extends MouseAdapter {
 
-	protected Canvas canvas;
+	private Canvas canvas;
 
 	public SelectModeAdapter(Canvas canvas) {
 		this.canvas = canvas;

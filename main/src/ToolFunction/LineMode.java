@@ -1,7 +1,6 @@
 package ToolFunction;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JPanel;
@@ -15,7 +14,6 @@ import UML.CanvasObject.Port;
 public abstract class LineMode extends Mode {
 
 	private Association association = null;
-
 	private GraphObject startJPanel = null;
 	private Port startPort = null;
 
